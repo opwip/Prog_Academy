@@ -63,3 +63,10 @@ for item in HTML:
     elif not inside_tag:
         HTML_formatted += item
 print(HTML_formatted)
+while '<' in HTML:
+    index_left = HTML.find('<')
+    index_right = HTML.find('>')
+    tmp = HTML[index_left: index_right + 1]
+    HTML = HTML.replace(tmp, '')
+
+print(HTML)
