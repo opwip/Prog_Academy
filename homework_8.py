@@ -44,10 +44,52 @@ elif friendships[user_name1] & friendships[user_name2]:
     print(friendships[user_name1] & friendships[user_name2], "- спільні друзі")
 else:
     print("Немає спільних друзів")
+print("     Next Task")
 
 # Task 1.5
 row1, row2 = input(">>>"), input(">>>")
 both_have = set(row1.split()).intersection(set(row2.split()))
-print(max(both_have, key=len))
+if both_have:
+    print(max(both_have, key=len))
+else:
+    print("Sentences do not contain the same words")
+print("     Next Task")
 
 
+# Task 2.1
+def sum_of_2int_and_str(number1: int, number2: int, text: str):
+    return text + str(number1 + number2)
+
+
+print(sum_of_2int_and_str(int(input(">>>")), int(input(">>>")), input(">>>")))
+print("     Next Task")
+
+
+# Task 2.2
+def draw_rectangle(length: int, width: int):
+    return f"{'*' * width}\n" + f"*{' ' * (width - 2)}*\n" * (length - 2) + f"{'*' * width}\n"
+
+
+print(draw_rectangle(int(input("length>>>")), int(input("width>>>"))))
+
+
+# Task 2.3
+def find_element(element_list: list, element):
+    for index, _ in enumerate(element_list):
+        if _ == element:
+            return index
+    return -1
+
+
+print(find_element([1, 2, 3, 4, "kola", "bola"], "kola"))
+
+
+# Task 2.4
+def words_count(sentence: str):
+    for _ in sentence:
+        if not _.isalpha():
+            sentence = sentence.replace(_, ' ')
+    return len(sentence.split())
+
+
+print(words_count(input(">>>")))
