@@ -1,65 +1,41 @@
 # Task 1
 def category_money(data) -> dict:
-    family_data = {}
+    total_cost = {}
     with open(data, "r", encoding="utf-8") as file:
-        for item in file:
-            line = item.split()
-            transaction_id, *name, money, category = line
-            family_data[transaction_id] = (' '.join(name)), money, category
-    categories_money_dict = {}
-    for values in family_data.values():
-        if values[-1] not in categories_money_dict:
-            categories_money_dict[values[-1]] = 0
-    for key in categories_money_dict:
-        for values in family_data.values():
-            if values[-1] == key:
-                minus_dollar = values[-2]
-                minus_dollar = minus_dollar.strip('$')
-                categories_money_dict[key] += float(minus_dollar)
-        categories_money_dict[key] = f"{categories_money_dict[key]:.2f}$"
-    return categories_money_dict
+        for line in file:
+            transaction_id, *name, money, category = line.split()
+            if category in total_cost:
+                total_cost[category] += float(money.strip("$"))
+            else:
+                total_cost[category] = float(money.strip("$"))
+    for key, value in total_cost.items():
+        total_cost[key] = f"{value:.2f}$"
+    return total_cost
 
 
 # Task 2
 def name_money(data) -> dict:
+    total_cost = {}
     with open(data, "r", encoding="utf-8") as file:
-        family_data = {}
-        for item in file:
-            line = item.split()
-            transaction_id, *name, money, category = line
-            family_data[transaction_id] = (' '.join(name)), money, category
-    name_money_dict = {}
-    for values in family_data.values():
-        if values[-3] not in name_money_dict:
-            name_money_dict[values[-3]] = 0
-    for key in name_money_dict:
-        for values in family_data.values():
-            if values[-3] == key:
-                minus_dollar = values[-2]
-                minus_dollar = minus_dollar.strip('$')
-                name_money_dict[key] += float(minus_dollar)
-        name_money_dict[key] = f"{name_money_dict[key]:.2f}$"
-    return name_money_dict
+        for line in file:
+            transaction_id, *name, money, category = line.split()
+            if category in total_cost:
+                total_cost[(' '.join(name))] += float(money.strip("$"))
+            else:
+                total_cost[(' '.join(name))] = float(money.strip("$"))
+    for key, value in total_cost.items():
+        total_cost[key] = f"{value:.2f}$"
+    return total_cost
 
 
-def count_total(data: str, name_req: str) -> str:
+def count_total(data: str, name_req: str) -> int:
+    count = 0
     with open(data, "r", encoding="utf-8") as file:
-        family_data = {}
-        for item in file:
-            line = item.split()
-            transaction_id, *name, money, category = line
-            family_data[transaction_id] = (' '.join(name)), money, category
-    name_count_dict = {}
-    for values in family_data.values():
-        if values[-3] not in name_count_dict:
-            name_count_dict[values[-3]] = 0
-    for key in name_count_dict:
-        count = 0
-        for values in family_data.values():
-            if values[-3] == key:
+        for line in file:
+            transaction_id, *name, money, category = line.split()
+            if name_req == (' '.join(name)):
                 count += 1
-        name_count_dict[key] = count
-    return f"{name_req} -> {name_count_dict[name_req]}" if name_req in name_count_dict.keys() else "Error"
+    return count
 
 
 print(category_money("hw_10_test.txt"))
