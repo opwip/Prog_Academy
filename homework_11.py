@@ -1,3 +1,4 @@
+# Task 1
 def parser(numbers: str) -> list:
     return list(map(int, numbers.split(",")))
 
@@ -56,3 +57,15 @@ if __name__ == '__main__':
     print(parser(numbers))
     numbers = parser(numbers)
     print(get_next_item(numbers))
+
+# Task 2
+max_polyndrom = 0
+factor = None
+for x in range(100, 1000):
+    for y in range(100, 1000):
+        number = x * y
+        if str(number) == str(number)[::-1]:
+            if number > max_polyndrom:
+                max_polyndrom = number
+                factor = [x, y]
+print(f"{max_polyndrom} = {factor[0]} × {factor[1]}")
