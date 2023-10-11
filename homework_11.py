@@ -59,11 +59,11 @@ if __name__ == '__main__':
     print(get_next_item(numbers))
 
 # Task 2
-def find_polyndrom():
+def find_polyndrom(digits : int):
     max_polyndrom = 0
     factor = None
-    for x in range(100, 1000):
-        for y in range(100, 1000):
+    for x in range(10**(digits-1), 10**digits):
+        for y in range(10**(digits-1), 10**digits):
             number = x * y
             if str(number) == str(number)[::-1]:
                 if number > max_polyndrom:
@@ -72,5 +72,5 @@ def find_polyndrom():
     return max_polyndrom, factor[0], factor[1]
 
 
-res = find_polyndorm()
+res = find_polyndrom(int(input("Number of digits in multiplies>>>")))
 print(f"{res[0]} = {res[1]} × {res[2]}")
