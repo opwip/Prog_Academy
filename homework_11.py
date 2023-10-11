@@ -59,13 +59,18 @@ if __name__ == '__main__':
     print(get_next_item(numbers))
 
 # Task 2
-max_polyndrom = 0
-factor = None
-for x in range(100, 1000):
-    for y in range(100, 1000):
-        number = x * y
-        if str(number) == str(number)[::-1]:
-            if number > max_polyndrom:
-                max_polyndrom = number
-                factor = [x, y]
-print(f"{max_polyndrom} = {factor[0]} × {factor[1]}")
+def find_polyndrom():
+    max_polyndrom = 0
+    factor = None
+    for x in range(100, 1000):
+        for y in range(100, 1000):
+            number = x * y
+            if str(number) == str(number)[::-1]:
+                if number > max_polyndrom:
+                    max_polyndrom = number
+                    factor = [x, y]
+    return max_polyndrom, factor[0], factor[1]
+
+
+res = find_polyndorm()
+print(f"{res[0]} = {res[1]} × {res[2]}")
